@@ -3,6 +3,7 @@ import { inject } from '@ember/service';
 import layout from '../templates/components/line-clamp';
 import { computed } from '@ember/object';
 import { htmlSafe, isHTMLSafe } from '@ember/string';
+import { run } from '@ember/runloop';
 
 const LINE_CLAMP_CLASS = 'lt-line-clamp';
 const SINGLE_LINE_CLAMP_CLASS = `${LINE_CLAMP_CLASS} ${LINE_CLAMP_CLASS}--single-line`;
@@ -271,6 +272,7 @@ export default Component.extend({
     this.onTruncate = this.onTruncate.bind(this);
     this._measureWidth = this._measureWidth.bind(this);
     this._calculateTargetWidth = this._calculateTargetWidth.bind(this);
+    run.scheduleOnce('afterRender', this, 'lineClampStyles');
   },
 
   didReceiveAttrs() {
@@ -280,7 +282,7 @@ export default Component.extend({
     }
   },
 
-  didInsertElement() {
+  lineClampStyles() {
     if (this._shouldUseNativeLineClampCSS()) {
       this.set('_lineClampClass', MULTI_LINE_CLAMP_CLASS);
       this.set('_lineClampStyle', htmlSafe(`-webkit-line-clamp: ${this.get('lines')}`));
