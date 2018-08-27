@@ -763,3 +763,17 @@ helloworld
 helloworld See Less`
   );
 });
+
+test('SafeString is retained', function(assert) {
+  this.set('textToTruncate', htmlSafe('<i>soemthing</i>'));
+
+  this.render(hbs`{{line-clamp
+    classNames="test-selector"
+    truncate=true
+    text=textToTruncate
+  }}`);
+  const element = document.querySelector('.test-selector');
+  const firstLine = element.querySelectorAll('span')[0];
+  const tags = Array.from(firstLine.children).map(child => child.tagName.toLowerCase())
+  assert.ok(tags.includes('i'));
+});

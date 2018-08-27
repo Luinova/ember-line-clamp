@@ -515,7 +515,8 @@ export default Component.extend({
     const lines = [];
     const numLines = this.get('lines');
     const text = this.get('text');
-    const textToTruncate = isHTMLSafe(text) ? this._unescapeText(text) : text;
+    const isHTMLSafeText = isHTMLSafe(text);
+    const textToTruncate = isHTMLSafeText ? this._unescapeText(text) : text;
     const formattedText = this.stripText ? this._stripBrTags(textToTruncate) : this._convertBrTags(textToTruncate);
     const textLines = formattedText.split('\n').map(line => line.trim().split(' '));
     let didTruncate = true;
@@ -609,7 +610,9 @@ export default Component.extend({
     }
 
     this.onTruncate(didTruncate);
-
+    if (isHTMLSafeText) {
+      lines.forEach(line => line.text = htmlSafe(line.text));
+    }
     return lines;
   },
 
