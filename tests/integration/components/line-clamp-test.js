@@ -6,7 +6,7 @@ moduleForComponent('line-clamp', 'Integration | Component | line clamp', {
   integration: true
 });
 
-test('inline form works as expeted', function(assert) {
+test('inline form works as expected', function(assert) {
   this.render(hbs`<div style="width: 300px; font-size: 16px; font-family: sans-serif;">
     {{line-clamp
       text="helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld"
@@ -761,5 +761,22 @@ hellowor... See More`
 helloworld
 helloworld
 helloworld See Less`
+  );
+});
+
+test('Line clamp renders if content width is equal to zero', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`<div id="test-conatiner" style="width: 0px; font-size: 16px; font-family: sans-serif;">
+    {{line-clamp
+      text="helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld"
+    }}
+  </div>`);
+
+  const element = this.$()[0];
+
+  assert.ok(
+    element,
+    'line clamp target exists for element with width set at zero'
   );
 });

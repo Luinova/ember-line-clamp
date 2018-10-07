@@ -355,7 +355,7 @@ export default Component.extend({
   _calculateTargetWidth() {
     const targetWidth = this.element.getBoundingClientRect().width;
 
-    if (!targetWidth) {
+    if (!targetWidth && targetWidth !== 0) {
       return window.requestAnimationFrame(this._calculateTargetWidth);
     }
 
