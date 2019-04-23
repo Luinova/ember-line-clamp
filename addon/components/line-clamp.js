@@ -473,7 +473,7 @@ export default Component.extend({
    * @private
    */
   _stripBrTags(text) {
-    return text.toString().replace(/<br.*?[/]?>/gi, ' ').replace(/\r\n|\n|\r/g, ' ');
+    return String(text).replace(/<br.*?[/]?>/gi, ' ').replace(/\r\n|\n|\r/g, ' ');
   },
 
   /**
@@ -483,7 +483,7 @@ export default Component.extend({
    * @private
    */
   _convertBrTags(text) {
-    return text.toString().replace(/<br.*?[/]?>/gi, '\n');
+    return String(text).replace(/<br.*?[/]?>/gi, '\n');
   },
 
   /**
@@ -494,7 +494,7 @@ export default Component.extend({
    * @private
    */
   _unescapeText(text) {
-    return text.toString().replace(R_ENTITIES, match =>
+    return String(text).replace(R_ENTITIES, match =>
       HTML_ENTITIES_TO_CHARS[match] ||
       HTML_ENTITIES_TO_CHARS[match.replace(
         /([0-9]+)/gi,
