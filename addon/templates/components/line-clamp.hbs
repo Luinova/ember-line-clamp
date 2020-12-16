@@ -6,7 +6,7 @@
         <span class="lt-line-clamp__ellipsis"><div class="lt-line-clamp__dummy-element">{{unbound ellipsis}}</div>
         {{!-- Use div to wrap the ellipsis up so that the see more button can work after google translates the page (Issue #48)--}}
           {{#if _showMoreButton}}
-            <a data-test-line-clamp-show-more-button="true" href="#" role="button" id="line-clamp-show-more-button" aria-expanded="false" class="lt-line-clamp__more" onclick={{action "toggleTruncate"}}>{{unbound seeMoreText}}</a>
+            <a data-test-line-clamp-show-more-button="true" href="#" role="button" aria-expanded="false" class="lt-line-clamp__more line-clamp-show-more-button" onclick={{action "toggleTruncate"}}>{{unbound seeMoreText}}</a>
           {{/if}}
         </span>
       {{~/if~}}
@@ -25,7 +25,7 @@
 {{#if _showLessButton}}
   {{#unless _truncated}}
     {{#if _expanded}}
-      <span><a data-test-line-clamp-show-less-button="true" id="line-clamp-show-less-button"  href="#" role="button" aria-expanded="true" class="lt-line-clamp__less" onclick={{action "toggleTruncate"}}>{{unbound seeLessText}}</a></span>
+      <span><a data-test-line-clamp-show-less-button="true" href="#" role="button" aria-expanded="true" class="lt-line-clamp__less line-clamp-show-less-button" onclick={{action "toggleTruncate"}}>{{unbound seeLessText}}</a></span>
     {{/if}}
   {{/unless}}
 {{/if}}

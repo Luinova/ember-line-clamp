@@ -634,7 +634,7 @@ export default Component.extend({
 
     if (justExpanded) {
       mutateDOM(() => {
-        const showLessButton = this.element.querySelector('#line-clamp-show-less-button');
+        const showLessButton = this.element.querySelector('.line-clamp-show-less-button');
         if (showLessButton) {
           showLessButton.focus();
         }
@@ -650,7 +650,7 @@ export default Component.extend({
       }
     } else {
       mutateDOM(() => {
-        const showMoreButton = this.element.querySelector('#line-clamp-show-more-button');
+        const showMoreButton = this.element.querySelector('.line-clamp-show-more-button');
         if (showMoreButton) {
           showMoreButton.focus();
         }
